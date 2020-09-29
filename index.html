@@ -28,7 +28,7 @@
       <label>Please select a date</label>
       <br></br>
 
-      <input type="date" id="datePicker" min="1990-01-01" max="2050-01-01" />
+      <input type="date" id="datePicker" min="1990-01-01" max="2050-01-01" onchange="calculateDates"/>
     </form>
 
     <table>
@@ -40,16 +40,27 @@
         <th>180 Day Limit</th>
       </tr>
       <tr>
-        <th id="60dayLimit">test</th>
+        <th id="60dayLimit"></th>
+        <th id="90dayLimit"></th>
+        <th id="95dayLimit"></th>
+        <th id="120dayLimit"></th>
+        <th id="180dayLimit"></th>
       </tr>
   </body>
 
   <script>
     var today = moment();
-    var op90 = document.getElementById("90");
     var dselected = document.getElementById("datePicker");
 
-    document.getElementById('60dayLimit').innerHTML = today.add('days', 60);
+   /* function calculateDates(){ */
+      
+      document.getElementById('60dayLimit').innerHTML = today.add('days', 60);
+      document.getElementById('90dayLimit').innerHTML = today.add('days', 90);
+      document.getElementById('95dayLimit').innerHTML = today.add('days', 95);
+      document.getElementById('120dayLimit').innerHTML = today.add('days', 120);
+      document.getElementById('180dayLimit').innerHTML = today.add('days', 180);
+    /*}*/
+    
 /*
     document.getElementById("datePicker").valueAsDate = new Date();
     document
