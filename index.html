@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Static Template</title>
+  </head>
+  <body>
+    <h1>Timely Filing Calculator</h1>
+    <form>
+      <input
+        type="date"
+        id="start"
+        name="trip-start"
+        value="today;"
+        min="2018-01-01"
+        max="2018-12-31"
+      />
+    </form>
+  </body>
+
+  <script src="//code.jquery.com/jquery-1.11.2.min.js">
+        var today = moment();
+
+    document.getElementById('datePicker').valueAsDate = new Date();
+    document.getElementById("datePicker").addEventListener("change", function() {
+        this.value = new Date()
+        var input = this.value;
+        var dateEntered = new Date(input);
+        console.log(input);
+
+      console.log(moment(input, "DD").fromNow())
+    });
+  </script>
+</html>
