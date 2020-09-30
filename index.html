@@ -28,7 +28,8 @@
       <label>Please select a date</label>
       <br></br>
 
-      <input type="date" id="datePicker" min="1990-01-01" max="2050-01-01" onchange="calculateDates()"/>
+      <input type="date" id="datePicker" min="1990-01-01" max="2050-01-01" 
+        onchange="calculateDates(this.value)"/>
     </form>
 
     <table>
@@ -49,32 +50,32 @@
   </body>
 
   <script>
-    var today = moment;
-    var dselected = document.getElementById("datePicker"); 
 
-    function calculateDates(){ 
+    //set date in datepicker as today
+    document.getElementById('datePicker').valueAsDate = new Date();
+
+    //call calculate dates on page load 
+    calculateDates(document.getElementById('datePicker').value);
+
+    //calculateDates updates all fields of table based on date passed in
+    function calculateDates(dSelected){ 
       
-      document.getElementById('60dayLimit').innerHTML = today.add('days', 60);
-      document.getElementById('90dayLimit').innerHTML = today.add('days', 90);
-      document.getElementById('95dayLimit').innerHTML = today.add('days', 95);
-      document.getElementById('120dayLimit').innerHTML = today.add('days', 120);
-      document.getElementById('180dayLimit').innerHTML = today.add('days', 180);
+      //set each date as 60 days ahead in MM-DD-YYYY Formatting
+      document.getElementById('60dayLimit').innerHTML = moment(dSelected)
+        .add('days', 60)
+        .format("MM-DD-YYYY");
+      document.getElementById('90dayLimit').innerHTML = moment(dSelected)
+        .add('days', 90)
+        .format("MM-DD-YYYY");
+      document.getElementById('95dayLimit').innerHTML = moment(dSelected)
+        .add('days', 95)
+        .format("MM-DD-YYYY");
+      document.getElementById('120dayLimit').innerHTML = moment(dSelected)
+        .add('days', 120)
+        .format("MM-DD-YYYY");
+      document.getElementById('180dayLimit').innerHTML = moment(dSelected)
+        .add('days', 180)
+        .format("MM-DD-YYYY");
     }
-    
-/*
-    document.getElementById("datePicker").valueAsDate = new Date();
-    document
-      .getElementById("datePicker")
-      .addEventListener("change", function () {
-        this.value = new Date();
-        var input = this.value;
-        var dateEntered = new Date(input);
-        document.getElementById("90").innerHTML = 90;
-        console.log(input);
-
-        console.log(moment(input, "DD").fromNow());
-      });
-
-      */
   </script>
 </html>
