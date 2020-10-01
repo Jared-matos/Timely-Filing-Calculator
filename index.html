@@ -6,127 +6,157 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" /> 
   </head>
 
+   
   <link rel='stylesheet' href='https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css'>
   
-  <style>
-  .dates {
-    display: flex;
-    justify-content: space-between;
-    width: 600px;
+<style>
+body {
+  color: #000000;
+}
+.timely-desc{
+  color:#000;
+  font-size: 11pt;
+  font-family: calibri;
+}
+.timely-title{
+  color: #3a99f9;
+  font-size: 18pt;
+  font-weight: 700;
+  display: block;
+  font-family: calibri;
+}
+.userInput {
+  margin: 20px auto;
+}
+.userInput > label{
+  margin: 10px auto;
+  color: #000;
+  font-weight: bold;
+  display: block;
+  height: 11pt;
+  font-family: calibri;
+}
+.dates {
+  display: flex;
+  justify-content: space-between;
+  width: 560px;
+/*   outline:0.10em solid black; */
+}
+.dates > div {
+  max-height: 80px;
+  max-width: 300px
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+/*   outline:0.001em solid black; */
+}
+.dates > div > label {
+  color: rgb(0, 0, 0);
+  font-weight: bold;
+  display: block;
+  height: 10px;
+}
+p {
+  display: inline
+}
+</style>
+
+  <script>
+  window.console = window.console || function(t) {};
+</script>
+
+  
+  
+  <script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
   }
-  .dates > div {
-    max-height: 80px;
-    max-width: 300px
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    outline:0.01em solid black;
-  }
-  label {
-    color: #000;
-    font-weight: bold;
-    display: block;
-    font-size: 13pt;  
-    font-family: calibri;
-  }
-  p {
-    display: inline
-  }
-  h1{
-    font-family: calibri;
-    font-size: 18pt;
-    color: rgb(58, 153, 249);
-  }
-  </style>
-  
-    <!--<script>
-    window.console = window.console || function(t) {};
-  </script> 
-  
-    
-    
-    <script>
-    if (document.location.search.match(/type=embed/gi)) {
-      window.parent.postMessage("resize", "*");
-    }
-  </script>
-  -->
-  
-  
-  </head>
-  
-  <body translate="no" >
-    <h1>Timely Filing Calculator</h1>
-  
-  <div class="userInput">
-    <label>Date Filter</label><br />
-    <p><input type="text" id="datePicker"></p>
-    <button id="search">Search</button>
+</script>
+
+
+</head>
+
+<body translate="no" >
+  <p class="timely-title">Timely Filing Calculator</p>
+<p class="timely-desc">
+  <span>
+    Select the date below to calculate dates for timely filing from date of service. To find appropriate timely limit, please review the <a href="/team/MemberServicesWoburn/SiteAssets/SitePages/Provider%20Claim%20Calls/Claims%20Timely%20Filing%20Job%20Aide.xlsx">Filing Job Aid.</a> More information is available under Provider Claims.
+    <br />
+    <br />
+    The date shown is the final date Beacon will accept the claim as within timely.
+  </span>
+
+</p>
+<div class="userInput">
+  <label>Date Filter</label>
+  <p><input type="text" id="datePicker"></p>
+  <button id="search">Search</button>
+</div>
+<div class="dates">
+  <div>
+    <label>Date</label><br />
+    <p id="dateChosen"></p>
   </div>
-  <div class="dates">
-    <div>
-      <label>Date</label><br />
-      <p id="dateChosen"></p>
-    </div>
-    <div><label>60 days</label><br />
-      <p id="60days"></p>
-    </div>
-    <div> <label>90 days</label><br />
-      <p id="90days"></p>
-    </div>
-    <div><label>120 days</label><br />
-      <p id="120days"></p>
-    </div>
-    <div><label>180 days</label><br />
-      <p id="180days"></p>
-    </div>
-    <div><label>365 days</label><br />
-      <p id="365days"></p>
-    </div>
-  
+  <div><label>60 days</label><br />
+    <p id="60days"></p>
   </div>
-      <script src="https://static.codepen.io/assets/common/stopExecutionOnTimeout-157cd5b220a5c80d4ff8e0e70ac069bffd87a61252088146915e8726e5d9f147.js"></script>
+  <div> <label>90 days</label><br />
+    <p id="90days"></p>
+  </div>
+  <div><label>120 days</label><br />
+    <p id="120days"></p>
+  </div>
+  <div><label>180 days</label><br />
+    <p id="180days"></p>
+  </div>
+  <div><label>365 days</label><br />
+    <p id="365days"></p>
+  </div>
+
+</div>
+    <script src="https://static.codepen.io/assets/common/stopExecutionOnTimeout-157cd5b220a5c80d4ff8e0e70ac069bffd87a61252088146915e8726e5d9f147.js"></script>
+
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.0/moment.min.js'></script>
+<script src='https://code.jquery.com/jquery-1.12.4.js'></script>
+<script src='https://code.jquery.com/ui/1.12.1/jquery-ui.js'></script>
   
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.0/moment.min.js'></script>
-  <script src='https://code.jquery.com/jquery-1.12.4.js'></script>
-  <script src='https://code.jquery.com/ui/1.12.1/jquery-ui.js'></script>
-    
-        <script id="rendered-js" >
-  $(function () {
-    // Initialize Date Picker
-    $("#datePicker").datepicker({
-      dateFormat: "mm-dd-yy" });
-  
-    // Set Default Date
-    $("#datePicker").datepicker("setDate", moment().format("MM-DD-YYYY"));
-    // Initial values
-    var dateToUse = $("#datePicker").val();
+      <script id="rendered-js" >
+$(function () {
+  // Initialize Date Picker
+  $("#datePicker").datepicker({
+    dateFormat: "mm-dd-yy" });
+
+  // Set Default Date
+  $("#datePicker").datepicker("setDate", moment(new Date()).format("MM-DD-YYYY"));
+  // Initial values
+  var dateToUse = $("#datePicker").val();
+  $("#dateChosen").text(dateToUse);
+  $("#60days").text(moment(dateToUse).add(60, "day").format("MM-DD-YYYY"));
+  $("#90days").text(moment(dateToUse).add(90, "day").format("MM-DD-YYYY"));
+  $("#120days").text(moment(dateToUse).add(120, "day").format("MM-DD-YYYY"));
+  $("#180days").text(moment(dateToUse).add(180, "day").format("MM-DD-YYYY"));
+  $("#365days").text(moment(dateToUse).add(365, "day").format("MM-DD-YYYY"));
+
+  $("#search").on("click", function (e) {
+    e.preventDefault();
+    // console.log($("#datePicker").val());
+    var dateToUse = moment($("#datePicker").val()).format("MM-DD-YYYY");
+    console.log(dateToUse);
     $("#dateChosen").text(dateToUse);
     $("#60days").text(moment(dateToUse).add(60, "day").format("MM-DD-YYYY"));
     $("#90days").text(moment(dateToUse).add(90, "day").format("MM-DD-YYYY"));
     $("#120days").text(moment(dateToUse).add(120, "day").format("MM-DD-YYYY"));
     $("#180days").text(moment(dateToUse).add(180, "day").format("MM-DD-YYYY"));
     $("#365days").text(moment(dateToUse).add(365, "day").format("MM-DD-YYYY"));
-  
-    $("#search").on("click", function (e) {
-  e.preventDefault()
-      console.log($("#datePicker").val());
-      var dateToUse = $("#datePicker").val();
-      $("#dateChosen").text(dateToUse);
-      $("#60days").text(moment(dateToUse).add(60, "day").format("MM-DD-YYYY"));
-      $("#90days").text(moment(dateToUse).add(90, "day").format("MM-DD-YYYY"));
-      $("#120days").text(moment(dateToUse).add(120, "day").format("MM-DD-YYYY"));
-      $("#180days").text(moment(dateToUse).add(180, "day").format("MM-DD-YYYY"));
-      $("#365days").text(moment(dateToUse).add(365, "day").format("MM-DD-YYYY"));
-    });
-  
   });
-  //# sourceURL=pen.js
-      </script>
+
+});
+//# sourceURL=pen.js
+    </script>
+
   
-    
-  
-  </body>
+
+</body>
 
  <!--     Javascript solution
   <style type="text/css">
