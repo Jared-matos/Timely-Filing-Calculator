@@ -6,29 +6,20 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   </head>
 
+  <!--When Moving data over to sharepoint Copy from here Down-->
   <link
     rel="stylesheet"
     href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"
   />
 
+  <!--This section sets the style of the document. The sections -->
   <style>
     body {
       color: #000000;
     }
-    .timely-desc {
-      color: #000;
-      font-size: 11pt;
-      font-family: calibri;
-    }
-    .timely-title {
-      color: #3a99f9;
-      font-size: 18pt;
-      font-weight: 700;
-      display: block;
-      font-family: calibri;
-    }
     .userInput {
       margin: 20px auto;
+      font-family: calibri;
     }
     .userInput > label {
       margin: 10px auto;
@@ -43,7 +34,6 @@
       justify-content: space-between;
       width: 560px;
       font-family: calibri;
-      /*   outline:0.10em solid black; */
     }
     .dates > div {
       max-height: 80px;
@@ -51,7 +41,6 @@
       -webkit-box-sizing: border-box;
       -moz-box-sizing: border-box;
       box-sizing: border-box;
-      /*   outline:0.001em solid black; */
     }
     .dates > div > label {
       color: rgb(0, 0, 0);
@@ -64,31 +53,18 @@
     }
   </style>
 
+  <!--This Script sets the size of the tool to the size of the "box" holding it, ensures that it does not overrun the page-->
   <script>
     window.console = window.console || function (t) {};
-
     if (document.location.search.match(/type=embed/gi)) {
       window.parent.postMessage("resize", "*");
     }
   </script>
 
+  <!--This section contains the information to be displayed on the page-->
   <body translate="no">
-    <p class="timely-title">Timely Filing Calculator</p>
-    <p class="timely-desc">
-      <span>
-        Select the date below to calculate dates for timely filing from date of
-        service. To find appropriate timely limit, please review the
-        <a
-          href="/team/MemberServicesWoburn/SiteAssets/SitePages/Provider%20Claim%20Calls/Claims%20Timely%20Filing%20Job%20Aide.xlsx"
-          >Filing Job Aid.</a
-        >
-        More information is available under Provider Claims.
-        <br />
-        <br />
-        The date shown is the final date Beacon will accept the claim as within
-        timely.
-      </span>
-    </p>
+    <!-- This line needs to be removed when importing -->
+
     <div class="userInput">
       <label>Date Filter</label>
       <p><input type="text" id="datePicker" /></p>
@@ -121,6 +97,7 @@
       </div>
     </div>
 
+    <!--This section is the code that actually calculates the dates and changes the output-->
     <script src="https://static.codepen.io/assets/common/stopExecutionOnTimeout-157cd5b220a5c80d4ff8e0e70ac069bffd87a61252088146915e8726e5d9f147.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.0/moment.min.js"></script>
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -140,6 +117,8 @@
         // Initial values
         var dateToUse = $("#datePicker").val();
         $("#dateChosen").text(dateToUse);
+
+        //These values are set by targeting the text on screen tagged 60days and overwriting it with XX days ahead
         $("#60days").text(
           moment(dateToUse).add(60, "day").format("MM-DD-YYYY")
         );
@@ -156,11 +135,12 @@
           moment(dateToUse).add(180, "day").format("MM-DD-YYYY")
         );
 
+        //This controls the Search Button. This code runs when it is clicked.
         $("#search").on("click", function (e) {
           e.preventDefault();
-          // console.log($("#datePicker").val());
+
           var dateToUse = moment($("#datePicker").val()).format("MM-DD-YYYY");
-          // console.log(dateToUse);
+
           $("#dateChosen").text(dateToUse);
           $("#60days").text(
             moment(dateToUse).add(60, "day").format("MM-DD-YYYY")
@@ -179,103 +159,7 @@
           );
         });
       });
-      //# sourceURL=pen.js
     </script>
+    <!-- Below this line should be removed when importing to sharepoint-->
   </body>
-
-  <!--     Javascript solution
-  <style type="text/css">
-    .chart {
-      border-collapse: collapse;
-    }
-    .hRow {
-      font-family: calibri;
-      font-size: 13pt;
-      font-weight: bold;
-      border: 1px solid black;
-      border-collapse: collapse;
-      padding: 5px;
-    }
-    .dRow {
-      font-family: calibri;
-      font-size: 11pt;
-      border: 1px solid black;
-      border-collapse: collapse;
-      padding: 5px;
-    }
-    .head {
-      font-family: calibri;
-      font-size: 18pt;
-      color: rgb(58, 153, 249);
-      font-weight: bold;
-    }
-    .txt {
-      font-family: calibri;
-      font-size: 11pt;
-      color: #000;
-    }
-  </style>
-  
-
-  <div>
-      <h1 class="head">Timely Filing Calculator</h1>
-
-      <form>
-        <label class="txt">Please select a date</label>
-        <br></br>
-  
-        <input class ="txt" type="date" id="datePicker" min="1990-01-01" max="2050-01-01" 
-          onchange="calculateDates(this.value)"/>
-      </form>
-  
-      <table class="chart">
-        <tr class= "hRow">
-          <th class=hRow>60 Day Limit</th>
-          <th class=hRow>90 Day Limit</th>
-          <th class=hRow>95 Day Limit</th>
-          <th class=hRow>120 Day Limit</th>
-          <th class=hRow>180 Day Limit</th>
-        </tr>
-        <tr class="dRow">
-          <th id="60dayLimit" class="dRow"></th>
-          <th id="90dayLimit" class="dRow"></th>
-          <th id="95dayLimit" class="dRow"></th>
-          <th id="120dayLimit" class="dRow"></th>
-          <th id="180dayLimit" class="dRow"></th>
-        </tr>
-      </table>
-  </div>
-
-
-  <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.7.0/moment.min.js" type="text/javascript" ></script>
-  <script>
-
-      //set date in datepicker as today
-      document.getElementById('datePicker').valueAsDate = new Date();
-  
-      //call calculate dates on page load 
-      calculateDates(document.getElementById('datePicker').value);
-  
-      //calculateDates updates all fields of table based on date passed in
-      function calculateDates(dSelected){ 
-        
-        //set each date as 60 days ahead in MM-DD-YYYY Formatting
-        document.getElementById('60dayLimit').innerHTML = moment(dSelected)
-          .add('days', 60)
-          .format("MM-DD-YYYY");
-        document.getElementById('90dayLimit').innerHTML = moment(dSelected)
-          .add('days', 90)
-          .format("MM-DD-YYYY");
-        document.getElementById('95dayLimit').innerHTML = moment(dSelected)
-          .add('days', 95)
-          .format("MM-DD-YYYY");
-        document.getElementById('120dayLimit').innerHTML = moment(dSelected)
-          .add('days', 120)
-          .format("MM-DD-YYYY");
-        document.getElementById('180dayLimit').innerHTML = moment(dSelected)
-          .add('days', 180)
-          .format("MM-DD-YYYY");
-      }
-    </script>
-  -->
 </html>
