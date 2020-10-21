@@ -138,6 +138,7 @@
         //This controls the Search Button. This code runs when it is clicked.
         $("#search").on("click", function (e) {
           e.preventDefault();
+          $("#datePicker").val().parseDate("MM-DD-YYYY");
 
           var dateToUse = moment($("#datePicker").val()).format("MM-DD-YYYY");
 
@@ -160,6 +161,8 @@
         });
       });
     </script>
+    <!-- Code hosted on Github @ https://github.com/Jared-matos/Timely-Filing-Calculator -->
+
     <!-- Below this line should be removed when importing to sharepoint-->
   </body>
 </html>
