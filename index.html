@@ -13,7 +13,7 @@
   />
 
   <!--This section sets the style of the document. The sections -->
-  <style>
+  <style type="text/css">
     body {
       color: #000000;
     }
@@ -32,7 +32,7 @@
     .dates {
       display: flex;
       justify-content: space-between;
-      width: 560px;
+      width: 450px;
       font-family: calibri;
     }
     .dates > div {
@@ -119,6 +119,7 @@
         $("#dateChosen").text(dateToUse);
 
         //These values are set by targeting the text on screen tagged 60days and overwriting it with XX days ahead
+
         $("#60days").text(
           moment(dateToUse).add(60, "day").format("MM-DD-YYYY")
         );
@@ -138,7 +139,6 @@
         //This controls the Search Button. This code runs when it is clicked.
         $("#search").on("click", function (e) {
           e.preventDefault();
-          $("#datePicker").val().parseDate("MM-DD-YYYY");
 
           var dateToUse = moment($("#datePicker").val()).format("MM-DD-YYYY");
 
